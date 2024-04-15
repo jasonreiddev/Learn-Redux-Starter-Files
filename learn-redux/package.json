@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": ":) ",
   "scripts": {
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
-    "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "yarn clean && yarn build:webpack",
     "clean": "rimraf dist",
     "start": "node devServer.js",
     "tunnel": "browser-sync start --proxy localhost:7770 --tunnel wesbos"
@@ -27,6 +26,7 @@
     "babel-polyfill": "^6.7.4",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^0.23.1",
     "eslint": "^2.9.0",
     "eslint-plugin-babel": "^3.2.0",

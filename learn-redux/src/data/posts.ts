@@ -1,4 +1,6 @@
-export const posts = [
+import { Post } from "../types";
+
+export const posts: Post[] = [
   {
     code: "BAcyDyQwcXX",
     caption: "Lunch #hamont",

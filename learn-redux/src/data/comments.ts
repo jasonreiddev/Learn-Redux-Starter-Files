@@ -1,4 +1,6 @@
-export const comments = {
+import { Comments } from "../types";
+
+export const comments: Comments = {
   BAhvZrRwcfu: [
     {
       text: "Totally need to try this.",

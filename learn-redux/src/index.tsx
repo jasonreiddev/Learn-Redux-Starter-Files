@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import "!style-loader!css-loader!sass-loader!./styles/style.scss";
-import { Main } from "./components/Main";
-import { PhotoGrid } from "./components/PhotoGrid";
-import { Single } from "./components/Single";
+import { Main } from "./stories/pages/Main/Main";
+import { PhotoGrid } from "./stories/widgets/PhotoGrid/PhotoGrid";
+import { Single } from "./stories/widgets/Single/Single";
 import { store } from "./store";
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
       <Router>
         <Main>
           <Switch>
-            <Route path="/view/:postId">
+            <Route path="/view/:postCode">
               <Single />
             </Route>
             <Route path="/">

@@ -11,21 +11,25 @@ const commentsSlice = createSlice({
   reducers: {
     addComment: (
       state,
-      action: PayloadAction<{ postId: string; author: string; comment: string }>
+      action: PayloadAction<{
+        postCode: string;
+        author: string;
+        comment: string;
+      }>
     ) => {
-      const { postId, author, comment } = action.payload;
-      if (!state[postId]) {
-        state[postId] = [];
+      const { postCode, author, comment } = action.payload;
+      if (!state[postCode]) {
+        state[postCode] = [];
       }
-      state[postId].push({ user: author, text: comment });
+      state[postCode].push({ user: author, text: comment });
     },
     removeComment: (
       state,
-      action: PayloadAction<{ postId: string; i: number }>
+      action: PayloadAction<{ postCode: string; i: number }>
     ) => {
-      const { postId, i } = action.payload;
-      if (state[postId]) {
-        state[postId].splice(i, 1);
+      const { postCode, i } = action.payload;
+      if (state[postCode]) {
+        state[postCode].splice(i, 1);
       }
     },
   },

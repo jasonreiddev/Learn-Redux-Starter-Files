@@ -1,5 +1,7 @@
 import { Post } from "../types";
 
+export const exampleCode = "BAcyDyQwcXX";
+
 export const posts: Post[] = [
   {
     code: "BAcyDyQwcXX",

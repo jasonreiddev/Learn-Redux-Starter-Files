@@ -1,10 +1,9 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { FaComment, FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useStore";
 import { incrementLikes } from "../../../reducers/posts";
 import { PhotoStyles as s } from "./Photo.styles";
 
@@ -45,7 +44,7 @@ export const Photo: FunctionComponent<PhotoProps> = ({ postCode }) => {
           >
             <FaHeart /> {post.likes}
           </s.Link>
-          <s.Link to={`/view/${post.code}`}>
+          <s.Link to={`/view/${post.code}#comment`}>
             <FaComment />
             {postComments?.length || 0}
           </s.Link>

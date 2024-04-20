@@ -75,6 +75,7 @@ const Link = styled(_Link)`
   font-size: 15px;
   color: var(--blue);
   transition: all 0.2s;
+
   &:hover,
   &:focus {
     border-color: var(--blue);

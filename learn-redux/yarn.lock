@@ -2054,7 +2054,7 @@
     fs-extra "^11.1.0"
     read-pkg-up "^7.0.1"
 
-"@storybook/test@8.0.8", "@storybook/test@^8.0.8":
+"@storybook/test@8.0.8":
   version "8.0.8"
   resolved "https://registry.yarnpkg.com/@storybook/test/-/test-8.0.8.tgz#041ec2164de26ae77e493d8121495c556e0ae7c8"
   integrity sha512-YXgwgg1e8ggDg2BlgeExwdN3MjeExnDvybQIUugADgun87tRIujJFCdjh0PAxg0Qvln6+lU3w+3Y2aryvX42RA==

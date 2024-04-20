@@ -15,19 +15,8 @@ const Container = styled.div`
   flex-direction: column-reverse;
 `;
 
-const Form = styled.form`
+const FormWrapper = styled.div`
   margin-top: auto;
-
-  input,
-  textarea {
-    width: 100%;
-    border: 0;
-    font-size: 1.3rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--lightgrey);
-    outline: none;
-    resize: vertical;
-  }
 `;
 
 const RemoveButton = styled.button`
@@ -64,7 +53,7 @@ const Comment = styled.div`
 export const CommentStyles = {
   Wrapper,
   Container,
-  Form,
+  FormWrapper,
   Comment,
   RemoveButton,
 };

@@ -3,8 +3,10 @@ import { FunctionComponent } from "react";
 import { FaComment, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { incrementLikes } from "../../../reducers/posts";
+import { PhotoStyles as s } from "./Photo.styles";
 
 export interface PhotoProps {
   postCode: string;
@@ -18,39 +20,37 @@ export const Photo: FunctionComponent<PhotoProps> = ({ postCode }) => {
   const postComments = comments[postCode] || [];
 
   return (
-    <figure className="grid-figure">
-      <div className="grid-photo-wrap">
-        <Link to={`/view/${post.code}`} className="grid-photo-link">
-          <img
-            src={post.display_src}
-            alt={post.caption}
-            className="grid-photo"
-          />
-        </Link>
+    <s.Figure>
+      <s.Wrapper>
+        <s.ImageLink to={`/view/${post.code}`}>
+          <s.Image src={post.display_src} alt={post.caption} />
+        </s.ImageLink>
         <AnimatePresence initial={false}>
-          <motion.span
+          <s.Likes
             key={post.likes}
-            className="likes-heart"
             animate={{ opacity: [0, 0.8, 1, 0], scale: [0, 0.8, 1] }}
             transition={{ duration: 0.5 }}
           >
             <FaHeart />
             <span>{post.likes}</span>
-          </motion.span>
+          </s.Likes>
         </AnimatePresence>
-      </div>
+      </s.Wrapper>
       <figcaption>
         <p>{post.caption}</p>
-        <div className="control-buttons">
-          <button onClick={() => dispatch(incrementLikes({ postId: post.id }))}>
+        <s.Controls>
+          <s.Link
+            as="button"
+            onClick={() => dispatch(incrementLikes({ postId: post.id }))}
+          >
             <FaHeart /> {post.likes}
-          </button>
-          <Link className="button" to={`/view/${post.code}`}>
+          </s.Link>
+          <s.Link to={`/view/${post.code}`}>
             <FaComment />
             {postComments?.length || 0}
-          </Link>
-        </div>
+          </s.Link>
+        </s.Controls>
       </figcaption>
-    </figure>
+    </s.Figure>
   );
 };

@@ -3,15 +3,18 @@ import { FunctionComponent } from "react";
 
 import { Photo } from "../../components/Photo/Photo";
 import { useAppSelector } from "../../../hooks";
+import { PhotoGridStyles as s } from "./PhotoGrid.styles";
 
 export const PhotoGrid: FunctionComponent = ({}) => {
   const posts = useAppSelector((state) => state.posts);
 
   return (
-    <div className="photo-grid">
+    <s.Wrapper>
       {posts.map((post) => (
-        <Photo key={post.id} postCode={post.code} />
+        <s.PhotoContainer key={post.id}>
+          <Photo postCode={post.code} />
+        </s.PhotoContainer>
       ))}
-    </div>
+    </s.Wrapper>
   );
 };

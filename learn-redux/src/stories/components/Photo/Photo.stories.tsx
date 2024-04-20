@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { exampleCode, posts } from "../../../data/posts";
@@ -16,6 +17,13 @@ export const Default: Story = {
   args: {
     postCode: exampleCode,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: "0 25vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const NoCommentsAndLikes: Story = {

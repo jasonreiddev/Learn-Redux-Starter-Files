@@ -4,6 +4,7 @@ import { FunctionComponent, SyntheticEvent } from "react";
 import { Comment } from "../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { addComment, removeComment } from "../../../reducers/comments";
+import { CommentStyles as s } from "./Comments.styles";
 
 export interface CommentsProps {
   postCode: string;
@@ -16,18 +17,17 @@ export const Comments: FunctionComponent<CommentsProps> = ({ postCode }) => {
 
   const renderComment = (comment: Comment, i: number) => {
     return (
-      <div className="comment" key={i}>
+      <s.Comment key={i}>
         <p>
           <strong>{comment.user}</strong>
           {comment.text}
-          <button
-            className="remove-comment"
+          <s.RemoveButton
             onClick={() => dispatch(removeComment({ postCode, i }))}
           >
             &times;
-          </button>
+          </s.RemoveButton>
         </p>
-      </div>
+      </s.Comment>
     );
   };
 
@@ -42,13 +42,23 @@ export const Comments: FunctionComponent<CommentsProps> = ({ postCode }) => {
   };
 
   return (
-    <div className="comments">
-      {postComments.map((comment, i) => renderComment(comment, i))}
-      <form className="comment-form" onSubmit={handleSubmit}>
-        <input type="text" id="author" placeholder="author" />
-        <input type="text" id="comment" placeholder="comment" />
-        <input type="submit" hidden />
-      </form>
-    </div>
+    <s.Wrapper>
+      <s.Container>
+        <s.Form onSubmit={handleSubmit}>
+          <input type="text" id="author" required={true} placeholder="author" />
+          <input
+            type="text"
+            id="comment"
+            required={true}
+            placeholder="comment"
+          />
+          <input type="submit" hidden />
+        </s.Form>
+        {postComments
+          .slice(0)
+          .reverse()
+          .map((comment, i) => renderComment(comment, i))}
+      </s.Container>
+    </s.Wrapper>
   );
 };

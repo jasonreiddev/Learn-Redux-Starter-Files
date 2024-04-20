@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Comments, CommentsProps } from "./Comments";
@@ -6,6 +7,13 @@ import { StoryProps } from "../../../../.storybook/types";
 
 const meta: Meta = {
   component: Comments,
+  decorators: [
+    (Story) => (
+      <div style={{ height: "90vh" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

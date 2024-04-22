@@ -1,9 +1,8 @@
-import * as React from "react";
 import { fn } from "@storybook/test";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { StoryProps } from ".storybook/types";
 import { Form, FormProps } from "./Form";
-import { StoryProps } from "../../../../.storybook/types";
 
 const meta: Meta = {
   component: Form,

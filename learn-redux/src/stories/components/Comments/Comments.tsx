@@ -1,17 +1,17 @@
 import * as React from "react";
-import { useRef } from "react";
+import { FunctionComponent, useRef } from "react";
 
-import { Comment } from "../../../types";
-import { useAppDispatch, useAppSelector } from "../../../hooks/useStore";
-import { addComment, removeComment } from "../../../reducers/comments";
-import { Form, FormData } from "../Form/Form";
+import { Comment } from "src/types";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { addComment, removeComment } from "@reducers/comments";
+import { Form, FormData } from "@components/Form/Form";
 import { CommentStyles as s } from "./Comments.styles";
 
 export interface CommentsProps {
   postCode: string;
 }
 
-export const Comments: React.FC<CommentsProps> = ({ postCode }) => {
+export const Comments: FunctionComponent<CommentsProps> = ({ postCode }) => {
   const dispatch = useAppDispatch();
   const comments = useAppSelector((state) => state.comments);
   const postComments = comments[postCode] || [];

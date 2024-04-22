@@ -1,13 +1,13 @@
 import * as React from "react";
-import type { Preview } from "@storybook/react";
+import type { Preview, StoryObj, StoryContext } from "@storybook/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { MemoryRouter, Route, Switch } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 
-import "!style-loader!css-loader!sass-loader!../src/styles/style.scss";
-import postsReducer from "../src/reducers/posts";
-import commentsReducer from "../src/reducers/comments";
-import { State } from "../src/types";
+import "../src/styles/style.scss";
+import postsReducer from "@reducers/posts";
+import commentsReducer from "@reducers/comments";
+import { RootState } from "src/store";
 
 const preview: Preview = {
   parameters: {
@@ -16,12 +16,12 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
-    },
+    }
   },
   decorators: [
-    (Story, context) => {
+    (Story: StoryObj, context: StoryContext) => {
       const mockStore = configureStore({
-        preloadedState: context.initialArgs.preloadedState as State,
+        preloadedState: context.initialArgs.preloadedState as RootState,
         reducer: {
           posts: postsReducer,
           comments: commentsReducer,
@@ -31,14 +31,10 @@ const preview: Preview = {
       return (
         <Provider store={mockStore}>
           <MemoryRouter initialEntries={[context.initialArgs.entry || "/"]}>
-            <Switch>
-              <Route path="/view/:postCode">
-                <Story />
-              </Route>
-              <Route path="/">
-                <Story />
-              </Route>
-            </Switch>
+          <Routes>
+              <Route path="/" element={<Story />} />
+              <Route path="/view/:postCode" element={<Story />} />
+            </Routes>        
           </MemoryRouter>
         </Provider>
       );

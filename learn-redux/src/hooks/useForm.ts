@@ -1,5 +1,7 @@
 import {
+  ChangeEvent,
   DetailedHTMLProps,
+  FormEvent,
   InputHTMLAttributes,
   RefObject,
   useState,
@@ -23,7 +25,7 @@ export const useForm = (
 ) => {
   const [form, setForm] = useState<FormData>(initialForm);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     callBack(form);
     setForm((prevForm) =>
@@ -34,7 +36,7 @@ export const useForm = (
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const { value } = e.target;

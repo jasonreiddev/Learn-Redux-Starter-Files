@@ -3,7 +3,7 @@ import { FunctionComponent, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { FormStyles as s } from "./Form.styles";
-import { useForm, FormData as _FormData } from "../../../hooks/useForm";
+import { useForm, FormData as _FormData } from "@hooks/useForm";
 
 export type FormData = _FormData;
 
@@ -34,9 +34,12 @@ export const Form: FunctionComponent<FormProps> = ({
 
   return (
     <s.Form onSubmit={handleSubmit}>
-      {form.map((field, i) => (
-        <input {...field} key={i} onChange={(e) => handleInputChange(e, i)} />
-      ))}
+      {form.map((field, i) => { 
+        const { retainOnSubmit, ...inputProps } = field;
+        return (
+          <input { ...inputProps} key={i} onChange={(e) => handleInputChange(e, i)} />
+        )
+      })}
       <input type="submit" hidden />
     </s.Form>
   );

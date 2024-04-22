@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link as _Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -60,7 +60,7 @@ const Controls = styled.div`
   margin-top: auto;
 `;
 
-const Link = styled(_Link)`
+const buttonStyles = css`
   border: 2px solid lightgrey;
   background: none;
   flex-basis: 48%;
@@ -83,6 +83,14 @@ const Link = styled(_Link)`
   }
 `;
 
+const Link = styled(_Link)`
+  ${buttonStyles}
+`;
+
+const Button = styled.button`
+  ${buttonStyles}
+`;
+
 export const PhotoStyles = {
   Figure,
   Wrapper,
@@ -91,4 +99,5 @@ export const PhotoStyles = {
   Likes,
   Controls,
   Link,
+  Button,
 };

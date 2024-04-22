@@ -1,27 +1,36 @@
 import * as React from "react";
+import { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import "!style-loader!css-loader!sass-loader!./styles/style.scss";
-import { Main } from "./stories/pages/Main/Main";
-import { PhotoGrid } from "./stories/widgets/PhotoGrid/PhotoGrid";
-import { Single } from "./stories/widgets/Single/Single";
+import "./styles/style.scss";
 import { store } from "./store";
+import { Main } from "@pages/Main/Main";
+import { Spinner } from "@components/Spinner/Spinner";
 
-export default function App() {
+const PhotoGrid = lazy(() =>
+  import("@widgets/PhotoGrid/PhotoGrid").then((module) => ({
+    default: module.PhotoGrid,
+  }))
+);
+const Single = lazy(() =>
+  import("@widgets/Single/Single").then((module) => ({
+    default: module.Single,
+  }))
+);
+
+export default function App(): JSX.Element {
   return (
     <Provider store={store}>
       <Router>
         <Main>
-          <Switch>
-            <Route path="/view/:postCode">
-              <Single />
-            </Route>
-            <Route path="/">
-              <PhotoGrid />
-            </Route>
-          </Switch>
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route path="/" element={<PhotoGrid />} />
+              <Route path="/view/:postCode" element={<Single />} />
+            </Routes>
+          </Suspense>
         </Main>
       </Router>
     </Provider>

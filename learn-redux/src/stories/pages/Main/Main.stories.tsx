@@ -1,11 +1,12 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { StoryProps } from ".storybook/types";
 import { Main, MainProps } from "./Main";
-import { StoryProps } from "../../../../.storybook/types";
-import { PhotoGrid } from "../../widgets/PhotoGrid/PhotoGrid";
-import { exampleCode } from "../../../data/posts";
-import { Single } from "../../widgets/Single/Single";
+import { PhotoGrid } from "@widgets/PhotoGrid/PhotoGrid";
+import { exampleCode } from "@data/posts";
+import { Single } from "@widgets/Single/Single";
+import { Spinner } from "@components/Spinner/Spinner";
 
 const meta: Meta = {
   component: Main,
@@ -29,5 +30,12 @@ export const _Single: Story = {
     ...Default.args,
     entry: `/view/${exampleCode}`,
     children: <Single />,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    children: <Spinner />,
   },
 };

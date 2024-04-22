@@ -1,12 +1,19 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { exampleCode, posts } from "../../../data/posts";
-import { StoryProps } from "../../../../.storybook/types";
+import { StoryProps } from ".storybook/types";
+import { exampleCode, posts } from "@data/posts";
 import { Photo, PhotoProps } from "./Photo";
 
 const meta: Meta = {
   component: Photo,
+  decorators: [
+    (Story: Story) => (
+      <div style={{ padding: "0 25vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -17,13 +24,6 @@ export const Default: Story = {
   args: {
     postCode: exampleCode,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: "0 25vw" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export const NoCommentsAndLikes: Story = {

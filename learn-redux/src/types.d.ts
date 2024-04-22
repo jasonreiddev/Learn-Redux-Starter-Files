@@ -14,8 +14,3 @@ export interface Comment {
 export interface Comments {
   [key: string]: Comment[];
 }
-
-export interface State {
-  posts: Post[];
-  comments: Comments;
-}

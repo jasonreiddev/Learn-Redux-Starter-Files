@@ -1,8 +1,9 @@
 var path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const baseConfig = require("./webpack.config.js");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  ...baseConfig,
+  mode: "production",
   module: {
     rules: [
       {
@@ -10,31 +11,15 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+      ...baseConfig.module.rules,
     ],
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+  optimization: {
+    runtimeChunk: "single",
   },
 };

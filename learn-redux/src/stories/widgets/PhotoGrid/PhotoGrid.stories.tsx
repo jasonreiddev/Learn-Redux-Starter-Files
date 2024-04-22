@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { StoryProps } from ".storybook/types";
 import { PhotoGrid } from "./PhotoGrid";
-import { exampleCode, posts } from "../../../data/posts";
-import { StoryProps } from "../../../../.storybook/types";
+import { exampleCode, posts } from "@data/posts";
 
 const meta: Meta = {
   component: PhotoGrid,

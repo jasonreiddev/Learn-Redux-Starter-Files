@@ -1,11 +1,25 @@
 {
+  "include": ["src/**/*", ".storybook/**/*"],
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "es2020",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@storybook/*": [".storybook/*"],
+      "src/*": ["src/*"],
+      "@data/*": ["src/data/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@reducers/*": ["src/reducers/*"],
+      "@components/*": ["src/stories/components/*"],
+      "@widgets/*": ["src/stories/widgets/*"],
+      "@pages/*": ["src/stories/pages/*"],
+      "@styles/*": ["src/styles/*"]
+    }
   }
 }

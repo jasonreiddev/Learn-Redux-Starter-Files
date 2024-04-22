@@ -1,22 +1,31 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
+import baseConfig from "../webpack.config";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
-    "@storybook/test"
   ],
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
   },
-  docs: {
-    autodocs: "tag",
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      mode: "development",
+      devtool: "inline-source-map",
+      plugins: [...config.plugins, ...baseConfig.plugins],
+      module: {
+        ...config.module,
+        rules: [...config.module.rules, ...baseConfig.module.rules],
+      },
+      resolve: {
+        ...config.resolve,
+        plugins: [...baseConfig.resolve.plugins],
+      },
+    };
   },
 };
 export default config;

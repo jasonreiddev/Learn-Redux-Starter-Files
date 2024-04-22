@@ -1,22 +1,14 @@
-const path = require("path");
+var path = require("path");
+const baseConfig = require("./webpack.config.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  ...baseConfig,
   mode: "development",
-  entry: {
-    index: "./src/index.tsx",
-  },
   devtool: "inline-source-map",
   devServer: {
     static: "./dist",
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Development",
-      template: "./index.html",
-    }),
-  ],
   module: {
     rules: [
       {
@@ -24,29 +16,16 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+      ...baseConfig.module.rules,
     ],
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
+  plugins: [
+    ...baseConfig.plugins,
+    new HtmlWebpackPlugin({
+      title: "Development",
+      template: "./index.html",
+    }),
+  ],
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),

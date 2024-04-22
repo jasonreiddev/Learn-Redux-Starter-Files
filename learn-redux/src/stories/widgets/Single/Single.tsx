@@ -2,12 +2,13 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 
-import { Photo } from "../../components/Photo/Photo";
-import { Comments } from "../../components/Comments/Comments";
+import { Photo } from "@components/Photo/Photo";
+import { Comments } from "@components/Comments/Comments";
 import { SingleStyles } from "./Single.styles";
 
 interface SingleRouteParams {
-  postCode?: string;
+  "postCode": string | undefined;
+  [key: string]: string | undefined;
 }
 
 export const Single: FunctionComponent = () => {

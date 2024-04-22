@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { StoryProps } from ".storybook/types";
 import { Single } from "./Single";
-import { exampleCode } from "../../../data/posts";
-import { StoryProps } from "../../../../.storybook/types";
+import { exampleCode } from "@data/posts";
 
 const meta: Meta = {
   component: Single,

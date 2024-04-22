@@ -1,14 +1,14 @@
 import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { StoryProps } from ".storybook/types";
 import { Comments, CommentsProps } from "./Comments";
-import { exampleCode, posts } from "../../../data/posts";
-import { StoryProps } from "../../../../.storybook/types";
+import { exampleCode, posts } from "@data/posts";
 
 const meta: Meta = {
   component: Comments,
   decorators: [
-    (Story) => (
+    (Story: Story) => (
       <div style={{ height: "90vh" }}>
         <Story />
       </div>

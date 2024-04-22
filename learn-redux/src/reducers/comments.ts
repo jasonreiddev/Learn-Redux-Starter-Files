@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Comments } from "../types";
-import { comments } from "../data/comments";
+import { Comments } from "src/types";
+import { comments } from "@data/comments";
 
 const initialState: Comments = comments;
 

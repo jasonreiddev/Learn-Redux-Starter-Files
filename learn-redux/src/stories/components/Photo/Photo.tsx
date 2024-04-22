@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { FaComment, FaHeart } from "react-icons/fa";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks/useStore";
-import { incrementLikes } from "../../../reducers/posts";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { incrementLikes } from "@reducers/posts";
 import { PhotoStyles as s } from "./Photo.styles";
 
 export interface PhotoProps {
@@ -38,12 +38,11 @@ export const Photo: FunctionComponent<PhotoProps> = ({ postCode }) => {
       <figcaption>
         <p>{post.caption}</p>
         <s.Controls>
-          <s.Link
-            as="button"
+          <s.Button
             onClick={() => dispatch(incrementLikes({ postId: post.id }))}
           >
             <FaHeart /> {post.likes}
-          </s.Link>
+          </s.Button>
           <s.Link to={`/view/${post.code}#comment`}>
             <FaComment />
             {postComments?.length || 0}
